@@ -1,0 +1,13 @@
+.clear
+const block = await ethers.provider.getBlockNumber()
+console.log(block)
+(await ethers.provider.getBlockNumber()) > 19000000
+const block = await ethers.provider.getBlockNumber()
+.clear
+const block = await ethers.provider.getBlockNumber()
+console.log(block)
+const block = await ethers.provider.getBlockNumber()
+console.log(block)
+(await ethers.provider.getBlockNumber()) > 19000000
+.break
+.help
