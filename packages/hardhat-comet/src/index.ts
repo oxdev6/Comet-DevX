@@ -37,6 +37,8 @@ import "./tasks/setup";
 import "./tasks/fork";
 import "./tasks/tokens";
 import "./tasks/print-config";
+import "./tasks/slither";
+import "./tasks/fuzz";
 
 
 
