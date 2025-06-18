@@ -115,7 +115,7 @@ export default config;
   npx hardhat setup-comet-env --network hardhat
   ```
 
-- **`fork-network`**  
+- **`fork-network`**
   Forks a network at a specific block (or latest) to create a local testing environment.
 
   **Usage:**
@@ -128,6 +128,24 @@ export default config;
 
    ```bash
   npx hardhat fork-network --network hardhat --block-number 17000000
+  ```
+
+- **`slither`**
+  Runs [Slither](https://github.com/crytic/slither) static analysis on the custom contracts in `packages/scenarios`.
+
+  **Usage:**
+
+  ```bash
+  npx hardhat slither
+  ```
+
+- **`forge-fuzz`**
+  Executes Foundry based fuzz tests found under the `foundry/test` directory.
+
+  **Usage:**
+
+  ```bash
+  npx hardhat forge-fuzz
   ```
 
 
