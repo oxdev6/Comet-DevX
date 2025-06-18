@@ -1,4 +1,3 @@
-/// Start of Selection
 import { ethers } from "ethers";
 import { Comet } from "../src/Comet";
 
