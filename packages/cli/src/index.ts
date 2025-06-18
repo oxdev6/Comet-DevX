@@ -77,8 +77,9 @@ import App from './App';
 import { Comet } from '@comet-devx/sdk';
 import { ethers } from 'ethers';
 
-const provider = new ethers.providers.JsonRpcProvider("https://sepolia.infura.io/v3/YOUR_INFURA_KEY");
-const wallet = new ethers.Wallet("0xYOUR_PRIVATE_KEY", provider);
+// Use environment variables for sensitive information
+const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL ?? "");
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY as string, provider);
 const comet = new Comet("sepolia", wallet);
 
 console.log("Comet instance:", comet);
@@ -170,8 +171,9 @@ import { Comet } from "@comet-devx/sdk";
 
 async function main() {
   // Example configuration - update with your actual RPC provider and private key.
-  const provider = new ethers.providers.JsonRpcProvider("https://sepolia.infura.io/v3/YOUR_INFURA_KEY");
-  const wallet = new ethers.Wallet("0xYOUR_PRIVATE_KEY", provider);
+  // Use environment variables for sensitive information
+  const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL ?? "");
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY as string, provider);
   const comet = new Comet("sepolia", wallet);
 
   console.log("Comet instance created:", comet);
