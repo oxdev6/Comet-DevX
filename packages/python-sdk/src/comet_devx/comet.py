@@ -86,6 +86,7 @@ class Comet:
         self,
         asset: ChecksumAddress,
         amount: Wei,
+        private_key: str,
         config: Optional[TransactionConfig] = None
     ) -> TxReceipt:
         """
@@ -94,6 +95,7 @@ class Comet:
         Args:
             asset: The ERC20 token address to supply
             amount: Amount to supply (in smallest units)
+            private_key: Hex string of the sender's private key
             config: Optional transaction configuration
 
         Returns:
@@ -121,7 +123,7 @@ class Comet:
             # Real transaction handling
             signed_tx = self.web3.eth.account.sign_transaction(
                 tx,
-                private_key=self.web3.eth.account._private_key
+                private_key=private_key
             )
             tx_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
             return self.web3.eth.wait_for_transaction_receipt(tx_hash)
@@ -134,6 +136,7 @@ class Comet:
     async def borrow(
         self,
         amount: Wei,
+        private_key: str,
         config: Optional[TransactionConfig] = None
     ) -> TxReceipt:
         """
@@ -141,6 +144,7 @@ class Comet:
 
         Args:
             amount: Amount to borrow (in smallest units)
+            private_key: Hex string of the sender's private key
             config: Optional transaction configuration
 
         Returns:
@@ -170,7 +174,7 @@ class Comet:
             # Real transaction handling
             signed_tx = self.web3.eth.account.sign_transaction(
                 tx,
-                private_key=self.web3.eth.account._private_key
+                private_key=private_key
             )
             tx_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
             return self.web3.eth.wait_for_transaction_receipt(tx_hash)
@@ -183,6 +187,7 @@ class Comet:
     async def repay(
         self,
         amount: Wei,
+        private_key: str,
         config: Optional[TransactionConfig] = None
     ) -> TxReceipt:
         """
@@ -190,6 +195,7 @@ class Comet:
 
         Args:
             amount: Amount to repay (in smallest units)
+            private_key: Hex string of the sender's private key
             config: Optional transaction configuration
 
         Returns:
@@ -219,7 +225,7 @@ class Comet:
             # Real transaction handling
             signed_tx = self.web3.eth.account.sign_transaction(
                 tx,
-                private_key=self.web3.eth.account._private_key
+                private_key=private_key
             )
             tx_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
             return self.web3.eth.wait_for_transaction_receipt(tx_hash)

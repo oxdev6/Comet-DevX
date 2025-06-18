@@ -7,6 +7,8 @@ from unittest.mock import Mock, patch
 from comet_devx.comet import Comet
 from comet_devx.types import CometException, InsufficientFundsError
 
+TEST_KEY = "0x59c6995e998f97a5a0044966f09453894be93910e1f9d6b9961c6ff93d5d56e9"
+
 @pytest.fixture
 def web3_mock():
     """Create a mock Web3 instance."""
@@ -61,7 +63,8 @@ async def test_supply(comet, web3_mock, mock_tx_receipt):
     # Test successful supply
     result = await comet.supply(
         "0x1234567890123456789012345678901234567890",
-        Wei(1000000)
+        Wei(1000000),
+        TEST_KEY
     )
     
     assert result == mock_tx_receipt
@@ -89,7 +92,7 @@ async def test_borrow(comet, web3_mock, mock_tx_receipt):
     web3_mock.eth.wait_for_transaction_receipt = Mock(return_value=mock_tx_receipt)
 
     # Test successful borrow
-    result = await comet.borrow(Wei(1000000))
+    result = await comet.borrow(Wei(1000000), TEST_KEY)
     
     assert result == mock_tx_receipt
     comet.contract.functions.withdraw.assert_called_once()
@@ -116,7 +119,7 @@ async def test_repay(comet, web3_mock, mock_tx_receipt):
     web3_mock.eth.wait_for_transaction_receipt = Mock(return_value=mock_tx_receipt)
 
     # Test successful repay
-    result = await comet.repay(Wei(1000000))
+    result = await comet.repay(Wei(1000000), TEST_KEY)
     
     assert result == mock_tx_receipt
     comet.contract.functions.supply.assert_called_once()
@@ -133,5 +136,6 @@ async def test_supply_insufficient_funds(comet, web3_mock):
     with pytest.raises(InsufficientFundsError):
         await comet.supply(
             "0x1234567890123456789012345678901234567890",
-            Wei(1000000)
+            Wei(1000000),
+            TEST_KEY
         )
